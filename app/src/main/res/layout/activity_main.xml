@@ -8,13 +8,13 @@
  <TextView
      android:layout_width="match_parent"
      android:layout_height="50dp"
-     android:text="XPayBack- NEWS"
+     android:text="@string/app_name"
      android:id="@+id/title"
      android:textColor="#ffffff"
      android:background="@color/colorPrimary"
      android:textStyle="bold"
      android:padding="10dp"
-     android:textSize="20dp"
+     android:textSize="20sp"
      android:textAlignment="center"
      app:layout_constraintTop_toTopOf="parent"
      />
