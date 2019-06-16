@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.renderscript.RenderScript;
@@ -37,17 +38,21 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> author = new ArrayList<>();
     private String maxLimit="20";
     private int pageNumber=1;
+    private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try
         {
+            if(getSupportActionBar()!=null)
             this.getSupportActionBar().hide();
         }
-        catch (Exception e){
-
+        catch (NullPointerException e){
+            Log.d(TAG,"wrror: "+e);
         }
         setContentView(R.layout.activity_main);
+        dialog = new ProgressDialog(MainActivity.this);
         AndroidNetworking.initialize(getApplicationContext());
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -57,7 +62,10 @@ public class MainActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         eventAdapter = new NewsAdapter(Title,ImageUrl,description,content,url,publishedAt,author);
         recyclerView.setAdapter(eventAdapter);
+        dialog.setMessage("Loading News..");
+        dialog.show();
         setNewsFeedContent("20",pageNumber);
+
         eventAdapter.setOnBottomReachedListener(new NewsAdapter.OnBottomReachedListener() {
             @Override
             public void onBottomReached(int position) {
@@ -83,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
+                        dialog.setMessage("Loading News..");
+                        dialog.hide();
 
                         try {
                             Log.d(TAG,"data ::"+response);
@@ -117,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError anError) {
+                        dialog.setMessage("Loading News..");
+                        dialog.hide();
                         Toast.makeText(MainActivity.this, "Free account limit from NEWSAPI. 100 results are max limit for free account result search", Toast.LENGTH_SHORT).show();
                     }
                 });

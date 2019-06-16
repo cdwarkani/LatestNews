@@ -6,5 +6,7 @@
     <string name="readmore">READ THE FULL ARTICLE</string>
     <string name="clickreadmore">Click to read more &#8230;</string>
     <string name="newsImage">Click to read more &#8230;</string>
+    <string name="wrby" formatted="true">Written by  %1$s! |Time: %2$s!</string>
+    <string name="timeN" formatted="true">Time: %1$s!</string>
 
 </resources>
