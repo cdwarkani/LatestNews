@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cardEvent"
+    app:cardElevation="0dp"
+android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    app:cardBackgroundColor="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:text="Tocode Laptop Backpack Daypack with USB Charging Por, Anti-Theft School Backpacks 17”Business Computer Bags Bookbags for Men and Women"
+android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/info_text_Desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textStyle="normal"
+        android:gravity="center"
+        android:layout_below="@+id/info_text"
+
+        android:text="Tocode Laptop Backpack Daypack with USB Charging Por, Anti-Theft School Backpacks 17”Business Computer Bags Bookbags for Men and Women"
+        android:textColor="#000000"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/readmore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentRight="true"
+        android:textColor="#cdcdcd"
+        android:textAlignment="textEnd"
+        android:paddingRight="10dp"
+        android:layout_below="@+id/info_text_Desc"
+        android:padding="10dp"
+        android:text="Click to read more..."
+
+        android:textSize="15sp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/readmore"
+        android:background="@android:color/darker_gray"/>
+</RelativeLayout>

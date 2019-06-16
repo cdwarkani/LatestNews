@@ -34,11 +34,19 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> content = new ArrayList<>();
     private ArrayList<String> url = new ArrayList<>();
     private ArrayList<String> publishedAt = new ArrayList<>();
+    private ArrayList<String> author = new ArrayList<>();
     private String maxLimit="20";
     private int pageNumber=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (Exception e){
+
+        }
         setContentView(R.layout.activity_main);
         AndroidNetworking.initialize(getApplicationContext());
 
@@ -47,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         // specify an adapter (see also next example)
-        eventAdapter = new NewsAdapter(Title,ImageUrl,description,content,url,publishedAt);
+        eventAdapter = new NewsAdapter(Title,ImageUrl,description,content,url,publishedAt,author);
         recyclerView.setAdapter(eventAdapter);
         setNewsFeedContent("20",pageNumber);
         eventAdapter.setOnBottomReachedListener(new NewsAdapter.OnBottomReachedListener() {
@@ -93,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                                     content.add(String.valueOf(initObject.get("content")));
                                     publishedAt.add(String.valueOf(initObject.get("publishedAt")));
                                     url.add(String.valueOf(initObject.get("url")));
+                                    author.add(String.valueOf(initObject.get("author")));
                                 }
                                 eventAdapter.notifyDataSetChanged();
 

@@ -3,10 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
+ <TextView
+     android:layout_width="match_parent"
+     android:layout_height="50dp"
+     android:text="XPayBack- NEWS"
+     android:id="@+id/title"
+     android:textColor="#ffffff"
+     android:background="@color/colorPrimary"
+     android:textStyle="bold"
+     android:padding="10dp"
+     android:textSize="20dp"
+     android:textAlignment="center"
+     app:layout_constraintTop_toTopOf="parent"
+     />
  <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
+            android:layout_marginTop="55dp"
             android:id="@+id/recyclerView"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
