@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.renderscript.RenderScript;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -28,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private String TAG="MainActivity";
     private ArrayList<String> Title = new ArrayList<>();
     private ArrayList<String> ImageUrl = new ArrayList<>();
+    private ArrayList<String> description = new ArrayList<>();
+    private ArrayList<String> content = new ArrayList<>();
+    private ArrayList<String> url = new ArrayList<>();
+    private ArrayList<String> publishedAt = new ArrayList<>();
     private String maxLimit="20";
     private int pageNumber=1;
     @Override
@@ -41,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         // specify an adapter (see also next example)
-        eventAdapter = new NewsAdapter(Title,ImageUrl);
+        eventAdapter = new NewsAdapter(Title,ImageUrl,description,content,url,publishedAt);
         recyclerView.setAdapter(eventAdapter);
         setNewsFeedContent("20",pageNumber);
         eventAdapter.setOnBottomReachedListener(new NewsAdapter.OnBottomReachedListener() {
@@ -59,15 +65,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
     private void setNewsFeedContent(String pageSize,int page) {
         AndroidNetworking.get("https://newsapi.org/v2/everything?q=business&sortBy=publishedAt&apiKey=76985723947c4d4f841bfe548a418640")
-                .setTag("test")
                 .addQueryParameter("pageSize", pageSize)
                 .addQueryParameter("page", String.valueOf(page))
-                .setPriority(Priority.LOW)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
 
@@ -86,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
                                 {
                                     JSONObject initObject= (JSONObject) articles.get(i);
                                     Title.add((String) initObject.get("title"));
+                                    ImageUrl.add(String.valueOf(initObject.get("urlToImage")));
+                                    description.add(String.valueOf(initObject.get("description")));
+                                    content.add(String.valueOf(initObject.get("content")));
+                                    publishedAt.add(String.valueOf(initObject.get("publishedAt")));
+                                    url.add(String.valueOf(initObject.get("url")));
                                 }
                                 eventAdapter.notifyDataSetChanged();
 
