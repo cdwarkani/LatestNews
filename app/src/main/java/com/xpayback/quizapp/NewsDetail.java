@@ -85,7 +85,7 @@ public class NewsDetail extends AppCompatActivity {
             published=wrby + authors;
         }
         else {
-            published=time + pubats;
+            published=timen + pubats;
 
         }
         pubat.setText(published);
